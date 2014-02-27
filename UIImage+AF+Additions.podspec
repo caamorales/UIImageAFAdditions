@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name     = 'UIImageAFAdditions'
+  s.name     = 'UIImage+AF+Additions'
   s.version  = '1.04'
   s.platform = :ios
   s.license  = 'MIT'
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.author   = { 'Melvin Rivera' => 'melvin@allforces.com' }
   s.source   = { :git => 'https://github.com/melvitax/UIImageAFAdditions.git', :tag => s.version.to_s }
   s.description = 'A simple UIImage convenience category for handling blur effects, corner radius and creation from color or UIVIews.'
-  s.source_files = 'UIImageAFAdditions/*'
+  s.source_files = 'UIImage+AF+Additions/*'
   s.framework    = 'QuartzCore'
   s.requires_arc = true
 end
