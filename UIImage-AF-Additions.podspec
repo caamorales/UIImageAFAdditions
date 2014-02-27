@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'UIImage+AF+Additions'
-  s.version  = '1.01'
+  s.version  = '1.02'
   s.platform = :ios
   s.license  = 'MIT'
   s.summary  = 'Convenience category for frame and border attributes.'
