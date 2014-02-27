@@ -5,7 +5,7 @@ A simple UIImage convenience category for handling blur effects, corner radius a
 
 ### CocoaPods
 ```
-pod 'UIImage+AF+Additions', :git => 'https://github.com/melvitax/UIImage+AF+Additions.git'
+pod 'UIImage+AF+Additions', :git => 'https://github.com/melvitax/UIImageAFAdditions.git'
 ```
 
 ### Header
