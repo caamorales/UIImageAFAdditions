@@ -5,12 +5,12 @@ A simple UIImage convenience category for handling blur effects, corner radius a
 
 ### CocoaPods
 ```
-pod 'UIImage-AF-Additions', :git => 'https://github.com/melvitax/UIImage-AF-Additions.git'
+pod 'UIImage+AF+Additions', :git => 'https://github.com/melvitax/UIImage+AF+Additions.git'
 ```
 
 ### Header
 ```
-#import "UIImage-AF-Additions.h"
+#import "UIImage+AF+Additions.h"
 ```
 
 ### Image from solid color

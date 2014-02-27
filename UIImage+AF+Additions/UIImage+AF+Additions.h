@@ -1,5 +1,5 @@
 //
-//  UIImage-AF-Additions.h
+//  UIImage+AF+Additions.h
 //
 //  Created by Melvin Rivera on 2/26/14
 //

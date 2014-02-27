@@ -1,5 +1,5 @@
 
-#import "UIImage-AF-Additions.h"
+#import "UIImage+AF+Additions.h"
 #import <Accelerate/Accelerate.h>
 #import <float.h>
 
