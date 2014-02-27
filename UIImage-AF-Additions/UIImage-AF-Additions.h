@@ -1,45 +1,35 @@
-UIImage-AF-Additions
-=============================
+//
+//  UIImage-AF-Additions.h
+//
+//  Created by Melvin Rivera on 2/26/14
+//
 
-A simple UIImage convenience category for handling blur effects, corner radius and creation from color or UIVIews
+#import <UIKit/UIKit.h>
 
-### CocoaPods
-```
-pod 'UIImage-AF-Additions', :git => 'https://github.com/melvitax/UIImage-AF-Additions.git'
-```
+@interface UIImage (AFAdditions)
 
-### Header
-```
-#import "UIImage-AF-Additions.h"
-```
-
-### Image from solid color
-```Objective-C
+// Image from solid color
 + (UIImage *) imageFromColor:(UIColor *)color;
 + (UIImage *) imageFromColor:(UIColor *)color size:(CGSize)size;
-```
 
-### Image from UIView
-```Objective-C
+// Image from UIView
 + (UIImage *) imageFromView:(UIView *)view;
-```
 
-### Image with Radial Gradient
-```Objective-C
+// Image with Radial Gradient
 + (UIImage *) imageWithRadialGradientSize:(CGSize)size start:(UIColor *)start end:( UIColor *)end centre:(CGPoint)centre radius:(float)radius;
-```
 
-### Corner Radius
-```Objective-C
+// Corner Radius
 - (UIImage *) imageWithCornerRadius:(CGFloat)cornerRadius;
 - (UIImage *) imageWithCornerRadiusAsCircle;
-```
 
-### Image Effects - From Apple
-```Objective-C
+// Image Effects - From Apple
 - (UIImage *) applyLightEffect;
 - (UIImage *) applyExtraLightEffect;
 - (UIImage *) applyDarkEffect;
 - (UIImage *) applyTintEffectWithColor:(UIColor *)tintColor;
 - (UIImage *) applyBlurWithRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage;
-```
+
+
+
+
+@end
