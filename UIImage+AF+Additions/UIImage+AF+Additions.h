@@ -19,8 +19,8 @@
 + (UIImage *) imageWithRadialGradientSize:(CGSize)size start:(UIColor *)start end:( UIColor *)end centre:(CGPoint)centre radius:(float)radius;
 
 // Corner Radius
-- (UIImage *) imageWithCornerRadius:(CGFloat)cornerRadius;
-- (UIImage *) imageWithCornerRadiusAsCircle;
+- (UIImage *) setCornerRadius:(CGFloat)cornerRadius;
+- (UIImage *) setCornerRadiusAsCircle;
 
 // Image Effects - From Apple
 - (UIImage *) applyLightEffect;

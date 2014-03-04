@@ -85,7 +85,7 @@
 
 #pragma mark - Corner Radius
 
-- (UIImage *) imageWithCornerRadius:(CGFloat)cornerRadius
+- (UIImage *) setCornerRadius:(CGFloat)cornerRadius
 {
     UIImage *circleImage = self;
     CGRect bounds = CGRectMake(0, 0, self.size.width, self.size.height);
@@ -97,7 +97,7 @@
     return circleImage;
 }
 
-- (UIImage *) imageWithCornerRadiusAsCircle
+- (UIImage *) setCornerRadiusAsCircle
 {
     return [self imageWithCornerRadius:self.size.width/2];
 }
