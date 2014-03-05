@@ -99,7 +99,7 @@
 
 - (UIImage *) setCornerRadiusAsCircle
 {
-    return [self imageWithCornerRadius:self.size.width/2];
+    return [self setCornerRadius:self.size.width/2];
 }
 
 #pragma mark - Image Effects
