@@ -41,8 +41,8 @@
                     interpolationQuality:(CGInterpolationQuality)quality;
 
 // Corner Radius
-- (UIImage *) setCornerRadius:(CGFloat)cornerRadius;
-- (UIImage *) setCornerRadiusAsCircle;
+- (UIImage *) imageWithCornerRadius:(CGFloat)cornerRadius;
+- (UIImage *) ImageWithCornerRadiusAsCircle;
 
 // Image Effects - From Apple
 - (UIImage *) applyLightEffect;
