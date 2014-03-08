@@ -55,8 +55,8 @@ pod 'UIImage+AF+Additions', :git => 'https://github.com/melvitax/UIImageAFAdditi
 
 ### Corner Radius
 ```Objective-C
-- (UIImage *) imageWithCornerRadius:(CGFloat)cornerRadius;
-- (UIImage *) imageWithCornerRadiusAsCircle;
+- (UIImage *) roundedCornerImage:(NSInteger)cornerSize borderSize:(NSInteger)borderSize;
+- (UIImage *) circleImageWithBorderSize:(NSInteger)borderSize;
 ```
 
 ### Image Effects - From Apple

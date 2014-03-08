@@ -25,23 +25,24 @@
 - (UIImage *) transparentBorderImage:(NSUInteger)borderSize;
 
 // Resize - From Trevor Harmon
-- (UIImage *)croppedImage:(CGRect)bounds;
+- (UIImage *) croppedImage:(CGRect)bounds;
 
-- (UIImage *)thumbnailImage:(NSInteger)thumbnailSize
-          transparentBorder:(NSUInteger)borderSize
-               cornerRadius:(NSUInteger)cornerRadius
-       interpolationQuality:(CGInterpolationQuality)quality;
+- (UIImage *) thumbnailImage:(NSInteger)thumbnailSize
+           transparentBorder:(NSUInteger)borderSize
+                cornerRadius:(NSUInteger)cornerRadius
+        interpolationQuality:(CGInterpolationQuality)quality;
 
-- (UIImage *)resizedImage:(CGSize)newSize
-     interpolationQuality:(CGInterpolationQuality)quality;
+- (UIImage *) resizedImage:(CGSize)newSize
+      interpolationQuality:(CGInterpolationQuality)quality;
 
-- (UIImage *)resizedImageWithContentMode:(UIViewContentMode)contentMode
-                                  bounds:(CGSize)bounds
-                    interpolationQuality:(CGInterpolationQuality)quality;
+- (UIImage *) resizedImageWithContentMode:(UIViewContentMode)contentMode
+                                   bounds:(CGSize)bounds
+                     interpolationQuality:(CGInterpolationQuality)quality;
 
-// Corner Radius
-- (UIImage *) imageWithCornerRadius:(CGFloat)cornerRadius;
-- (UIImage *) ImageWithCornerRadiusAsCircle;
+// Rounded Corner - From Trevor Harmon
+- (UIImage *) roundedCornerImage:(NSInteger)cornerSize borderSize:(NSInteger)borderSize;
+- (UIImage *) circleImageWithBorderSize:(NSInteger)borderSize;
+
 
 // Image Effects - From Apple
 - (UIImage *) applyLightEffect;
@@ -49,7 +50,6 @@
 - (UIImage *) applyDarkEffect;
 - (UIImage *) applyTintEffectWithColor:(UIColor *)tintColor;
 - (UIImage *) applyBlurWithRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage;
-
 
 
 

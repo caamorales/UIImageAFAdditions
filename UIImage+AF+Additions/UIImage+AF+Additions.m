@@ -387,21 +387,71 @@
 
 #pragma mark - Corner Radius
 
-- (UIImage *) imageWithCornerRadius:(CGFloat)cornerRadius
+
+- (UIImage *) roundedCornerImage:(NSInteger)cornerSize borderSize:(NSInteger)borderSize
 {
-    UIImage *circleImage = self;
-    CGRect bounds = CGRectMake(0, 0, self.size.width, self.size.height);
-    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
-    [[UIBezierPath bezierPathWithRoundedRect:bounds cornerRadius:cornerRadius] addClip];
-    [circleImage drawInRect:bounds];
-    circleImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return circleImage;
+    // If the image does not have an alpha layer, add one
+    UIImage *image = [self imageWithAlpha];
+    
+    // Build a context that's the same dimensions as the new size
+    CGContextRef context = CGBitmapContextCreate(NULL,
+                                                 image.size.width,
+                                                 image.size.height,
+                                                 CGImageGetBitsPerComponent(image.CGImage),
+                                                 0,
+                                                 CGImageGetColorSpace(image.CGImage),
+                                                 CGImageGetBitmapInfo(image.CGImage));
+    
+    // Create a clipping path with rounded corners
+    CGContextBeginPath(context);
+    [self addRoundedRectToPath:CGRectMake(borderSize, borderSize, image.size.width - borderSize * 2, image.size.height - borderSize * 2)
+                       context:context
+                     ovalWidth:cornerSize
+                    ovalHeight:cornerSize];
+    CGContextClosePath(context);
+    CGContextClip(context);
+    
+    // Draw the image to the context; the clipping path will make anything outside the rounded rect transparent
+    CGContextDrawImage(context, CGRectMake(0, 0, image.size.width, image.size.height), image.CGImage);
+    
+    // Create a CGImage from the context
+    CGImageRef clippedImage = CGBitmapContextCreateImage(context);
+    CGContextRelease(context);
+    
+    // Create a UIImage from the CGImage
+    UIImage *roundedImage = [UIImage imageWithCGImage:clippedImage];
+    CGImageRelease(clippedImage);
+    
+    return roundedImage;
 }
 
-- (UIImage *) ImageWithCornerRadiusAsCircle
+- (UIImage *) circleImageWithBorderSize:(NSInteger)borderSize
 {
-    return [self setCornerRadius:self.size.width/2];
+    return [self roundedCornerImage:self.size.width/2 borderSize:borderSize];
+}
+
+#pragma mark -
+#pragma mark Private helper methods
+
+// Adds a rectangular path to the given context and rounds its corners by the given extents
+// Original author: Björn Sållarp. Used with permission. See: http://blog.sallarp.com/iphone-uiimage-round-corners/
+- (void)addRoundedRectToPath:(CGRect)rect context:(CGContextRef)context ovalWidth:(CGFloat)ovalWidth ovalHeight:(CGFloat)ovalHeight {
+    if (ovalWidth == 0 || ovalHeight == 0) {
+        CGContextAddRect(context, rect);
+        return;
+    }
+    CGContextSaveGState(context);
+    CGContextTranslateCTM(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
+    CGContextScaleCTM(context, ovalWidth, ovalHeight);
+    CGFloat fw = CGRectGetWidth(rect) / ovalWidth;
+    CGFloat fh = CGRectGetHeight(rect) / ovalHeight;
+    CGContextMoveToPoint(context, fw, fh/2);
+    CGContextAddArcToPoint(context, fw, fh, fw/2, fh, 1);
+    CGContextAddArcToPoint(context, 0, fh, 0, fh/2, 1);
+    CGContextAddArcToPoint(context, 0, 0, fw/2, 0, 1);
+    CGContextAddArcToPoint(context, fw, 0, fw, fh/2, 1);
+    CGContextClosePath(context);
+    CGContextRestoreGState(context);
 }
 
 #pragma mark - Image Effects
