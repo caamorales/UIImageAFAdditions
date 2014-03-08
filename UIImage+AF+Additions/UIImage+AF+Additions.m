@@ -427,7 +427,7 @@
 
 - (UIImage *) circleImageWithBorderSize:(NSInteger)borderSize
 {
-    return [self roundedCornerImage:self.size.width/2 borderSize:borderSize];
+    return [self roundedCornerImage:self.size.width/2-borderSize borderSize:borderSize];
 }
 
 #pragma mark -
