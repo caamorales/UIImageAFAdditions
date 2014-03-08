@@ -10,18 +10,12 @@
 
 + (UIImage *) imageFromColor:(UIColor *)color
 {
-    return [UIImage imageFromColor:color size:CGSizeMake(10, 10) padding:0];
+    return [UIImage imageFromColor:color size:CGSizeMake(10, 10)];
 }
 
 + (UIImage *) imageFromColor:(UIColor *)color size:(CGSize)size
 {
-    return [UIImage imageFromColor:color size:size padding:0];
-}
-
-+ (UIImage *) imageFromColor:(UIColor *)color size:(CGSize)size padding:(NSInteger)padding
-{
-    float pad = ceilf(padding/2);
-    CGRect rect = CGRectMake(pad, pad, size.width-padding, size.height-padding);
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -33,6 +27,7 @@
     
     return image;
 }
+
 
 
 # pragma mark - Image from uiview

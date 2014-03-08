@@ -11,7 +11,6 @@
 // Image from solid color
 + (UIImage *) imageFromColor:(UIColor *)color;
 + (UIImage *) imageFromColor:(UIColor *)color size:(CGSize)size;
-+ (UIImage *) imageFromColor:(UIColor *)color size:(CGSize)size padding:(NSInteger)padding;
 
 
 // Image from UIView
