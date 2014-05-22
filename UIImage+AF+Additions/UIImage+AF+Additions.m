@@ -29,6 +29,109 @@
 }
 
 
+#pragma mark - Image from gradient colors
+
++ (UIImage *) imageWithGradientColors:(NSArray *)colors
+{
+    return [UIImage imageWithGradientColors:colors size:CGSizeMake(100, 100)];
+}
+
++ (UIImage *) imageWithGradientColors:(NSArray *)colors size:(CGSize)size
+{
+
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
+    NSMutableArray *cgColors = [NSMutableArray arrayWithCapacity:colors.count];
+    for (UIColor *color in colors) {
+        [cgColors addObject:(id)color.CGColor];
+    }
+    CGGradientRef gradient = CGGradientCreateWithColors(colorspace, (__bridge CFArrayRef)cgColors, NULL);
+    
+    CGContextDrawLinearGradient(context, gradient, CGPointMake(0, 0), CGPointMake(0, size.height), 0);
+
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    CGGradientRelease(gradient);
+    CGColorSpaceRelease(colorspace);
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
+- (UIImage *) applyGradientColors:(NSArray *)colors
+{
+    return [self applyGradientColors:colors withBlendMode:kCGBlendModeNormal];
+}
+
+- (UIImage *) applyGradientColors:(NSArray *)colors withBlendMode:(CGBlendMode)blendMode
+{
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(context, 0, self.size.height);
+    CGContextScaleCTM(context, 1.0, -1.0);
+
+    
+    CGContextSetBlendMode(context, kCGBlendModeNormal);
+    CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
+    CGContextDrawImage(context, rect, self.CGImage);
+    
+    // Create gradient
+    NSMutableArray *cgColors = [NSMutableArray arrayWithCapacity:colors.count];
+    for (UIColor *color in colors) {
+        [cgColors addObject:(id)color.CGColor];
+    }
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+    CGGradientRef gradient = CGGradientCreateWithColors(space, (__bridge CFArrayRef)cgColors, NULL);
+    
+    // Apply gradient
+    CGContextClipToMask(context, rect, self.CGImage);
+    CGContextDrawLinearGradient(context, gradient, CGPointMake(0,0), CGPointMake(0, self.size.height), 0);
+    UIImage *gradientImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    CGGradientRelease(gradient);
+    CGColorSpaceRelease(space);
+    
+    return gradientImage;
+}
+
+
+#pragma mark - Image with Text
+
+- (UIImage*) drawText:(NSString*)text withFont:(UIFont *)font color:(UIColor *)color
+{
+    
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    style.alignment = NSTextAlignmentCenter;
+    NSDictionary *attr = @{NSFontAttributeName:font, NSForegroundColorAttributeName:color, NSParagraphStyleAttributeName:style};
+    
+    CGRect fontRect = [text boundingRectWithSize:self.size options:NSStringDrawingTruncatesLastVisibleLine attributes:attr context:nil];
+    
+    CGFloat yOffset = (self.size.height - fontRect.size.height) / 2.0;
+    return [self drawText:text withFont:font color:color align:NSTextAlignmentCenter offset:CGPointMake(0, yOffset)];
+}
+
+- (UIImage*) drawText:(NSString*)text withFont:(UIFont *)font color:(UIColor *)color align:(NSTextAlignment)align offset:(CGPoint)offset
+{
+    UIGraphicsBeginImageContext(self.size);
+    
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    style.alignment = NSTextAlignmentCenter;
+    NSDictionary *attr = @{NSFontAttributeName:font, NSForegroundColorAttributeName:color, NSParagraphStyleAttributeName:style};
+    
+    CGRect fontRect = [text boundingRectWithSize:self.size options:NSStringDrawingTruncatesLastVisibleLine attributes:attr context:nil];
+    
+    [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
+    CGRect rect = CGRectMake(offset.x, offset.y, self.size.width, fontRect.size.height);
+
+    [text drawInRect:CGRectIntegral(rect) withAttributes:attr];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+
 
 # pragma mark - Image from uiview
 

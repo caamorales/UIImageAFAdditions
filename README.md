@@ -19,6 +19,20 @@ pod 'UIImage+AF+Additions', :git => 'https://github.com/melvitax/UIImageAFAdditi
 + (UIImage *) imageFromColor:(UIColor *)color size:(CGSize)size;
 ```
 
+### Image from gradient colors
+```Objective-C
++ (UIImage *) imageWithGradientColors:(NSArray *)colors;
++ (UIImage *) imageWithGradientColors:(NSArray *)colors size:(CGSize)size;
+- (UIImage *) applyGradientColors:(NSArray *)colors;
+- (UIImage *) applyGradientColors:(NSArray *)colors withBlendMode:(CGBlendMode)blendMode;
+```
+
+### Image with text
+```Objective-C
+- (UIImage*) drawText:(NSString*)text withFont:(UIFont *)font color:(UIColor *)color;
+- (UIImage*) drawText:(NSString*)text withFont:(UIFont *)font color:(UIColor *)color align:(NSTextAlignment)align offset:(CGPoint)offset;
+```
+
 ### Image from UIView
 ```Objective-C
 + (UIImage *) imageFromView:(UIView *)view;

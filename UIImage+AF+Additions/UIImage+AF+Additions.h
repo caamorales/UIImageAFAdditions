@@ -12,6 +12,16 @@
 + (UIImage *) imageFromColor:(UIColor *)color;
 + (UIImage *) imageFromColor:(UIColor *)color size:(CGSize)size;
 
+// Image from gradient color
++ (UIImage *) imageWithGradientColors:(NSArray *)colors;
++ (UIImage *) imageWithGradientColors:(NSArray *)colors size:(CGSize)size;
+- (UIImage *) applyGradientColors:(NSArray *)colors;
+- (UIImage *) applyGradientColors:(NSArray *)colors withBlendMode:(CGBlendMode)blendMode;
+
+// Image with Text
+- (UIImage*) drawText:(NSString*)text withFont:(UIFont *)font color:(UIColor *)color;
+- (UIImage*) drawText:(NSString*)text withFont:(UIFont *)font color:(UIColor *)color align:(NSTextAlignment)align offset:(CGPoint)offset;
+
 
 // Image from UIView
 + (UIImage *) imageFromView:(UIView *)view;
