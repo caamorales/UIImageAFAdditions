@@ -25,9 +25,10 @@
     [self.view addSubview:imageFromColor];
     
     // Radial Gradient
-    UIImageView *imageWithRadialGradient = [[UIImageView alloc] initWithImage:[UIImage imageWithRadialGradientSize:CGSizeMake(120, 120) start:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] end:[UIColor colorWithRed:1 green:0.8 blue:0.2 alpha:1] centre:CGPointMake(0.5, 0.5) radius:0.5]];
-    imageWithRadialGradient.frame = CGRectMake(170, 30, 120, 120);
-    [self.view addSubview:imageWithRadialGradient];
+    UIImage *imageWithRadialGradient = [UIImage imageWithRadialGradientSize:CGSizeMake(120, 120) start:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] end:[UIColor colorWithRed:1 green:0.8 blue:0.2 alpha:1] centre:CGPointMake(0.5, 0.5) radius:0.5];
+    UIImageView *imageWithRadialGradientView = [[UIImageView alloc] initWithImage:imageWithRadialGradient];
+    imageWithRadialGradientView.frame = CGRectMake(170, 30, 120, 120);
+    [self.view addSubview:imageWithRadialGradientView];
     
     // Gradient
     UIImageView *imageWithGradient = [[UIImageView alloc] initWithImage:[UIImage imageWithGradientColors:@[[UIColor colorWithRed:1 green:0 blue:0 alpha:1], [UIColor colorWithRed:1 green:0.5 blue:0.5 alpha:1]] size:CGSizeMake(120, 120)]];
