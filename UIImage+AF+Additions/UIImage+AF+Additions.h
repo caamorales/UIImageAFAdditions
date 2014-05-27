@@ -52,6 +52,10 @@
 // Rounded Corner - From Trevor Harmon
 - (UIImage *) roundedCornerImage:(NSInteger)cornerSize borderSize:(NSInteger)borderSize;
 - (UIImage *) circleImageWithBorderSize:(NSInteger)borderSize;
+- (UIImage *) roundedCornerImage:(NSInteger)cornerSize borderSize:(NSInteger)borderSize strokeSize:(NSInteger)strokeSize strokeColor:(UIColor *)strokeColor;
+
+
+
 
 
 // Image Effects - From Apple

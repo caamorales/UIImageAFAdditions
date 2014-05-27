@@ -538,6 +538,56 @@
     return [self roundedCornerImage:self.size.width/2-borderSize borderSize:borderSize];
 }
 
+- (UIImage *) roundedCornerImage:(NSInteger)cornerSize borderSize:(NSInteger)borderSize strokeSize:(NSInteger)strokeSize strokeColor:(UIColor *)strokeColor
+{
+    // If the image does not have an alpha layer, add one
+    UIImage *image = [self imageWithAlpha];
+    
+    CGFloat scale = MAX(self.scale,1.0f);
+    NSUInteger scaledBorderSize = borderSize * scale;
+    
+    // Build a context that's the same dimensions as the new size
+    CGContextRef context = CGBitmapContextCreate(NULL,
+                                                 image.size.width*scale,
+                                                 image.size.height*scale,
+                                                 CGImageGetBitsPerComponent(image.CGImage),
+                                                 0,
+                                                 CGImageGetColorSpace(image.CGImage),
+                                                 CGImageGetBitmapInfo(image.CGImage));
+    
+    // Create a clipping path with rounded corners
+    CGContextBeginPath(context);
+    CGRect scaledBorderRect = CGRectMake(scaledBorderSize, scaledBorderSize, image.size.width*scale - borderSize * 2, image.size.height*scale - borderSize * 2);
+    [self addRoundedRectToPath:scaledBorderRect
+                       context:context
+                     ovalWidth:cornerSize*scale
+                    ovalHeight:cornerSize*scale];
+    CGContextClosePath(context);
+    CGContextClip(context);
+    
+    // Draw the image to the context; the clipping path will make anything outside the rounded rect transparent
+    CGContextDrawImage(context, CGRectMake(0, 0, image.size.width*scale, image.size.height*scale), image.CGImage);
+    
+    // Stroke
+    CGFloat red, green, blue, alpha;
+    [strokeColor getRed:&red green:&green blue:&blue alpha:&alpha];
+	CGContextSetRGBStrokeColor(context, red, green, blue, alpha);
+	CGRect strokeRect = CGRectInset(scaledBorderRect, (borderSize*2)*scale, (borderSize*2)*scale);
+    CGContextSetLineWidth(context, strokeSize);
+	CGContextStrokeEllipseInRect(context, strokeRect);
+    
+    // Create a CGImage from the context
+    CGImageRef clippedImage = CGBitmapContextCreateImage(context);
+    CGContextRelease(context);
+    
+    // Create a UIImage from the CGImage
+    UIImage *roundedImage = [UIImage imageWithCGImage:clippedImage scale:self.scale orientation:UIImageOrientationUp];
+    
+    CGImageRelease(clippedImage);
+    
+    return roundedImage;
+}
+
 #pragma mark -
 #pragma mark Private helper methods
 

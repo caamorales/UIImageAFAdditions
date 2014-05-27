@@ -49,7 +49,7 @@
     [self.view addSubview:imageWithTextView];
     
     // Rounded Image
-    UIImage *roundImageWithText = [imageWithText circleImageWithBorderSize:2];
+    UIImage *roundImageWithText = [imageWithText roundedCornerImage:imageWithText.size.width/2 borderSize:1 strokeSize:10 strokeColor:[UIColor blackColor]];
     UIImageView *roundImageWithTextView = [[UIImageView alloc] initWithImage:roundImageWithText];
     roundImageWithTextView.frame = CGRectMake(170, 310, 120, 120);
     [self.view addSubview:roundImageWithTextView];
