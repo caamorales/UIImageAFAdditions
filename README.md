@@ -1,12 +1,65 @@
 UIImage-AF-Additions
 =============================
 
-A simple UIImage convenience category for handling blur effects, corner radius and creation from color or UIVIews
+UIImage convenience additions in Swift and Objective-C
+
 
 ### CocoaPods
 ```
 pod 'UIImage+AF+Additions', :git => 'https://github.com/melvitax/UIImageAFAdditions.git'
 ```
+
+Native Swift
+=============================
+
+### Image from solid color
+```Swift
+UIImage(color:UIColor, size:CGSize)
+```
+
+### Image from gradient colors
+```Swift
+UIImage(gradientColors:[UIColor], size:CGSize) 
+anImage.applyGradientColors(gradientColors: [UIColor], blendMode: CGBlendMode) -> UIImage 
+```
+
+### Image with Text
+```Swift
+UIImage(text: String, font: UIFont, color: UIColor, backgroundColor: UIColor, size:CGSize, offset: CGPoint) 
+```
+
+### Image from UIView
+```Swift
+UIImage(fromView view: UIView)
+```
+
+### Image with Radial Gradient
+```Swift
+UIImage(startColor: UIColor, endColor: UIColor, radialGradientCenter: CGPoint, radius:Float, size:CGSize)
+```
+
+### Padding and Alpha
+```Swift
+anImage.hasAlpha() -> Bool
+anImage.applyAlpha() -> UIImage 
+anImage.applyPadding(padding: CGFloat) -> UIImage 
+anImage.imageRefWithPadding(padding: CGFloat, size:CGSize) -> CGImageRef 
+```
+
+### Crop and Resize
+```Swift
+func crop(bounds: CGRect) -> UIImage 
+func resize(size:CGSize, contentMode: UIImageContentMode = .ScaleToFill) -> UIImage 
+```
+
+### Circle and Corner Radius
+```Swift
+func roundCorners(cornerRadius:CGFloat, stroke:CGFloat, color:UIColor, padding: CGFloat = 0) -> UIImage
+func roundCornersToCircle(#stroke:CGFloat, color:UIColor, padding: CGFloat = 0) -> UIImage 
+```
+
+Objective-C
+=============================
 
 ### Header
 ```

@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name     = 'UIImage+AF+Additions'
-  s.version  = '1.24'
+  s.version  = '2.0'
   s.platform = :ios
   s.license  = 'MIT'
-  s.summary  = 'Convenience category for frame and border attributes.'
+  s.summary  = 'Convenience additions for UIImage'
   s.homepage = 'https://github.com/melvitax/UIImageAFAdditions'
   s.author   = { 'Melvin Rivera' => 'melvin@allforces.com' }
   s.source   = { :git => 'https://github.com/melvitax/UIImageAFAdditions.git', :tag => s.version.to_s }
