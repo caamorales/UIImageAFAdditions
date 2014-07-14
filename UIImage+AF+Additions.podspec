@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'UIImage+AF+Additions'
-  s.version  = '2.01'
+  s.version  = '2.02'
   s.platform = :ios
   s.license  = 'MIT'
   s.summary  = 'Convenience additions for UIImage'

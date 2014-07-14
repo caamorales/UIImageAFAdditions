@@ -4,11 +4,6 @@ UIImage-AF-Additions
 UIImage convenience additions in Swift and Objective-C
 
 
-### CocoaPods
-```
-pod 'UIImage+AF+Additions', :git => 'https://github.com/melvitax/UIImageAFAdditions.git'
-```
-
 Native Swift
 =============================
 
@@ -60,6 +55,11 @@ func roundCornersToCircle(#stroke:CGFloat, color:UIColor, padding: CGFloat = 0) 
 
 Objective-C
 =============================
+
+### CocoaPods
+```
+pod 'UIImage+AF+Additions', :git => 'https://github.com/melvitax/UIImageAFAdditions.git'
+```
 
 ### Header
 ```
